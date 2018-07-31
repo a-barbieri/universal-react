@@ -41,20 +41,21 @@ app.get('*', async (req, res) => {
         </MuiThemeProvider>
     );
 
-    if (context.url) {
-        res.redirect(context.url);
-        return;
-    }
     let loadableState = {};
 
     store.runSaga(sagas).done.then(() => {
         const helmet = Helmet.renderStatic();
-        res.status(200).write(renderHeader(helmet));
 
         const preloadedState = store.getState();
         const css = styleManager.sheetsToString();
 
         const htmlSteam = renderToNodeStream(appWithRouter);
+        if (context.url) {
+            res.redirect(context.url);
+            return;
+        }
+
+        res.status(200).write(renderHeader(helmet));
         htmlSteam.pipe(res, { end: false });
         htmlSteam.on('end', () => {
             res.write(renderFooter(css, loadableState, preloadedState));

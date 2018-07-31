@@ -27,6 +27,7 @@ const MainMenu = () => (
             <nav style={navBar}>
                 <Link style={navLink} to="/">Home</Link>
                 <Link style={navLink} to="/playlists">Your playlists</Link>
+                <Link style={navLink} to="/favourite-playlist">Favourite playlist</Link>
                 <Link style={navLink} to="/search-album">Search an album</Link>
             </nav>
         </Toolbar>

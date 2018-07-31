@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
 import * as Routes from './routes';
@@ -34,6 +34,7 @@ const App = () => (
             <Route path="/playlists" component={Routes.PlayListsPage} />
             <Route path="/search-album" component={Routes.SearchAlbumPage} />
             <Route path="/albums/:albumSlug" component={Routes.AlbumPage} />
+            <Redirect from="/favourite-playlist" to="/playlists/pl-funk" />
         </Switch>
     </div>
 );
